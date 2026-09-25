@@ -1,8 +1,12 @@
 import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
+const usersEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+  : '/api/users/'
+
 function Users() {
-  const { items: users, error, loading } = useApiCollection('/api/users/')
+  const { items: users, error, loading } = useApiCollection(usersEndpoint)
 
   return (
     <section className="resource-view">

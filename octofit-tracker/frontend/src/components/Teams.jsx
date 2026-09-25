@@ -1,8 +1,12 @@
 import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
+const teamsEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+  : '/api/teams/'
+
 function Teams() {
-  const { items: teams, error, loading } = useApiCollection('/api/teams/')
+  const { items: teams, error, loading } = useApiCollection(teamsEndpoint)
 
   return (
     <section className="resource-view">

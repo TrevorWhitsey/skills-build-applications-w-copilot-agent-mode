@@ -1,8 +1,12 @@
 import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
+const leaderboardEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : '/api/leaderboard/'
+
 function Leaderboard() {
-  const { items: leaderboards, error, loading } = useApiCollection('/api/leaderboard/')
+  const { items: leaderboards, error, loading } = useApiCollection(leaderboardEndpoint)
   const currentBoard = leaderboards[0]
 
   return (

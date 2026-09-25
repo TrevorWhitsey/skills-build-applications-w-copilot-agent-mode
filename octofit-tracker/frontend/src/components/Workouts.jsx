@@ -1,8 +1,12 @@
 import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
+const workoutsEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+  : '/api/workouts/'
+
 function Workouts() {
-  const { items: workouts, error, loading } = useApiCollection('/api/workouts/')
+  const { items: workouts, error, loading } = useApiCollection(workoutsEndpoint)
 
   return (
     <section className="resource-view">

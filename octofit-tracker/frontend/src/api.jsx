@@ -32,7 +32,10 @@ export function useApiCollection(endpoint) {
         setLoading(true)
         setError('')
 
-        const response = await fetch(`${apiBaseUrl}${endpoint}`, {
+        const requestUrl = endpoint.startsWith('http')
+          ? endpoint
+          : `${apiBaseUrl}${endpoint}`
+        const response = await fetch(requestUrl, {
           signal: controller.signal,
         })
 
