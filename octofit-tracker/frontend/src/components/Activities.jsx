@@ -2,7 +2,7 @@ import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
 function Activities() {
-  const { items: activities, error, loading } = useApiCollection('activities')
+  const { items: activities, error, loading } = useApiCollection('/api/activities/')
 
   return (
     <section className="resource-view">

@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
 
 export const apiBaseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api'
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : 'http://localhost:8000'
 
 export function extractItems(payload) {
   if (Array.isArray(payload)) return payload
@@ -16,7 +16,7 @@ export function extractItems(payload) {
   return []
 }
 
-export function useApiCollection(resource) {
+export function useApiCollection(endpoint) {
   const [items, setItems] = useState([])
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -29,7 +29,7 @@ export function useApiCollection(resource) {
         setLoading(true)
         setError('')
 
-        const response = await fetch(`${apiBaseUrl}/${resource}/`, {
+        const response = await fetch(`${apiBaseUrl}${endpoint}`, {
           signal: controller.signal,
         })
 
@@ -52,7 +52,7 @@ export function useApiCollection(resource) {
 
     loadCollection()
     return () => controller.abort()
-  }, [resource])
+  }, [endpoint])
 
   return { items, error, loading }
 }

@@ -2,7 +2,7 @@ import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
 function Leaderboard() {
-  const { items: leaderboards, error, loading } = useApiCollection('leaderboard')
+  const { items: leaderboards, error, loading } = useApiCollection('/api/leaderboard/')
   const currentBoard = leaderboards[0]
 
   return (

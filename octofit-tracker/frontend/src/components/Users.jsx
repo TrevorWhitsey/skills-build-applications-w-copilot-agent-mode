@@ -2,7 +2,7 @@ import { useApiCollection } from '../api.jsx'
 import LoadingState from './LoadingState.jsx'
 
 function Users() {
-  const { items: users, error, loading } = useApiCollection('users')
+  const { items: users, error, loading } = useApiCollection('/api/users/')
 
   return (
     <section className="resource-view">
